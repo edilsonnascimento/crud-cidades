@@ -3,10 +3,12 @@ package br.edu.utfpr.cp.espjava.crudcidades.controller;
 import br.edu.utfpr.cp.espjava.crudcidades.Cidade;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,6 +16,7 @@ import java.util.Set;
 public class CidadeController {
 
     private Set<Cidade> cidades;
+    private BindingResult result;
 
 
     public CidadeController() {
@@ -27,8 +30,21 @@ public class CidadeController {
     }
 
     @PostMapping("/criar")
-    public String criar(Cidade cidade){
-        cidades.add(cidade);
+    public String criar(@Valid Cidade cidade, BindingResult validacao){
+
+        if(validacao.hasErrors()){
+            validacao
+                    .getFieldErrors()
+                    .forEach(error ->
+                                System.out.println(
+                                    String.format("O atributo %s emitiu a seguinte mensagem %s",
+                                    error.getField(), error.getDefaultMessage())
+                                )
+                            );
+        }else {
+            cidades.add(cidade);
+        }
+
         return "redirect:/";
     }
 
@@ -70,7 +86,7 @@ public class CidadeController {
                 cidadeSelecionada.getNome().equals(nomeSelecionado) &&
                 cidadeSelecionada.getEstado().equals(estadoSelecionado));
 
-           criar(cidade);
+           criar(cidade, result);
 
            return "redirect:/";
     }

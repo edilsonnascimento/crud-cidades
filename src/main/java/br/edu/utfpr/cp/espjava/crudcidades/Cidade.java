@@ -6,11 +6,11 @@ import javax.validation.constraints.Size;
 public class Cidade {
 
     @NotBlank(message = "{app.cidade.blank}")
-    @Size(min = 5, max = 60, message = "app.cidade.size")
+    @Size(min = 5, max = 60, message = "{app.cidade.size}")
     private final String nome;
 
-    @NotBlank(message = "app.estado.blank")
-    @Size(min = 5, max = 60, message = "app.estado.size")
+    @NotBlank(message = "{app.estado.blank}")
+    @Size(min = 5, max = 60, message = "{app.estado.size}")
     private final String estado;
 
     public Cidade(final String nome, final String estado) {
