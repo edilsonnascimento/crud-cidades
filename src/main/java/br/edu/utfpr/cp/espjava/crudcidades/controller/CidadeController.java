@@ -16,7 +16,6 @@ import java.util.Set;
 public class CidadeController {
 
     private Set<Cidade> cidades;
-    private BindingResult result;
 
 
     public CidadeController() {
@@ -30,17 +29,16 @@ public class CidadeController {
     }
 
     @PostMapping("/criar")
-    public String criar(@Valid Cidade cidade, BindingResult validacao){
+    public String criar(@Valid Cidade cidade, BindingResult validacao, Model memoria){
 
         if(validacao.hasErrors()){
             validacao
                     .getFieldErrors()
                     .forEach(error ->
-                                System.out.println(
-                                    String.format("O atributo %s emitiu a seguinte mensagem %s",
-                                    error.getField(), error.getDefaultMessage())
-                                )
+                               memoria.addAttribute(error.getField(), error.getDefaultMessage())
                             );
+            memoria.addAttribute("listaCidades", cidades);
+            return ("/crud");
         }else {
             cidades.add(cidade);
         }
@@ -86,7 +84,7 @@ public class CidadeController {
                 cidadeSelecionada.getNome().equals(nomeSelecionado) &&
                 cidadeSelecionada.getEstado().equals(estadoSelecionado));
 
-           criar(cidade, result);
+           criar(cidade, null, null);
 
            return "redirect:/";
     }
