@@ -1,5 +1,7 @@
 package br.edu.utfpr.cp.espjava.crudcidades;
 
+import br.edu.utfpr.cp.espjava.crudcidades.dominio.CidadeEntidade;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -24,5 +26,11 @@ public class Cidade {
 
     public String getEstado() {
         return estado;
+    }
+
+    public CidadeEntidade mapperTo(CidadeEntidade cidadeEntidade){
+        cidadeEntidade.setNome(this.getNome());
+        cidadeEntidade.setEstado(this.getEstado());
+        return cidadeEntidade;
     }
 }
