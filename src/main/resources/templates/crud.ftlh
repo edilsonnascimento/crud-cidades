@@ -6,6 +6,15 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     </head>
 <body>
+
+    <nav class="navbar navbar-expand-sm bg-dark">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a href="/logout" class="nav-link btn-secondary">Sair da aplicação</a>
+            </li>
+        </ul>
+    </nav>
+
     <div class="container-fluid">
         <div class="jumbotron mt-5">
             <h1>GERENCIAMENTO DE CIDADES</h1>

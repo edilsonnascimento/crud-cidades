@@ -36,7 +36,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/preparaAlterar").hasAnyAuthority("admin")
                 .antMatchers("/alterar").hasAnyAuthority("admin")
                 .and()
-                .formLogin().permitAll();
+                .formLogin().permitAll()
+                .loginPage("/login.html").permitAll()
+                .and()
+                .logout().permitAll();
     }
 
     @Bean
