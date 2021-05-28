@@ -1,7 +1,7 @@
 package br.edu.utfpr.cp.espjava.crudcidades.controller;
 
-import br.edu.utfpr.cp.espjava.crudcidades.Cidade;
-import br.edu.utfpr.cp.espjava.crudcidades.CidadeRepository;
+import br.edu.utfpr.cp.espjava.crudcidades.dominio.Cidade;
+import br.edu.utfpr.cp.espjava.crudcidades.repository.CidadeRepository;
 import br.edu.utfpr.cp.espjava.crudcidades.dominio.CidadeEntidade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

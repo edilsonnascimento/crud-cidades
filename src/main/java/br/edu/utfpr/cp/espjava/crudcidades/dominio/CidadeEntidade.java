@@ -1,7 +1,5 @@
 package br.edu.utfpr.cp.espjava.crudcidades.dominio;
 
-import br.edu.utfpr.cp.espjava.crudcidades.Cidade;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
