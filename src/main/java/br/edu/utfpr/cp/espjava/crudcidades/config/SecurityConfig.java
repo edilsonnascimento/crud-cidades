@@ -18,20 +18,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
+        http.authorizeRequests().antMatchers("/h2-console/**").permitAll()
+                .and().csrf().ignoringAntMatchers("/h2-console/**")
+                .and().headers().frameOptions().sameOrigin();
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/h2-console/login.do").permitAll()
                 .antMatchers("/").hasAnyAuthority("listar", "admin")
                 .antMatchers("/criar").hasAnyAuthority("admin")
-                .antMatchers("excluir").hasAnyAuthority("admin")
+                .antMatchers("/excluir").hasAnyAuthority("admin")
                 .antMatchers("/preparaAlterar").hasAnyAuthority("admin")
                 .antMatchers("/alterar").hasAnyAuthority("admin")
+                .antMatchers("/mostrar").authenticated()
+                .anyRequest().denyAll()
                 .and()
                 .formLogin().permitAll()
                 .loginPage("/login.html").permitAll()
                 .and()
                 .logout().permitAll();
+
     }
 
     @Bean
